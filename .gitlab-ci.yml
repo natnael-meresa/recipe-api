@@ -7,6 +7,8 @@ stages:
 test:
   stage: test
   image: golang:latest
+  tags:
+    - test
   script:
     - go fmt $(go list ./... | grep -v /vendor/)
     - go vet $(go list ./... | grep -v /vendor/)
@@ -14,6 +16,8 @@ test:
 
 compile:
   stage: build
+  tags:
+    - build
   services:
     - docker:20.10.16-dind
   script:
